@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Karnataka Railway Booking System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        background: #f3f2f1;
+    }
+    header {
+        background: #2564cf;
+        color: #fff;
+        padding: 20px 40px;
+        box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    }
+    h1 { margin: 0; font-weight: 600; }
+    main { padding: 30px; max-width: 900px; margin: auto; }
+
+    .card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.15);
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 4px;
+        color: #444;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    input[readonly] {
+        background: #f9f9f9;
+    }
+
+    button {
+        background: #2564cf;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover { background: #1e4fa3; }
+
+    .success {
+        background: #e7f7e7;
+        padding: 12px;
+        border-left: 4px solid #28a745;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .error {
+        background: #fde7e9;
+        padding: 12px;
+        border-left: 4px solid #d13438;
+        margin-top: 10px;
+        border-radius: 5px;
+        color: #a4262c;
+    }
+
+    .section-title {
+        margin-top: 20px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+    }
+
+    .row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .row-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Karnataka Railway Booking System</h1>
+</header>
+
+<main>
+    <div class="card">
+        <h2>Book a Ticket</h2>
+
+        <form id="ticketForm">
+            <!-- Passenger Details -->
+            <div class="section-title">Passenger Details</div>
+            <div class="row-2">
+                <div>
+                    <label for="name">Passenger Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div>
+                    <label for="age">Age</label>
+                    <input type="number" id="age" min="1" required>
+                </div>
+            </div>
+
+            <!-- Journey & Fare Block -->
+            <div class="section-title">Journey & Fare</div>
+
+            <div class="row-2">
+                <div>
+                    <label for="from">From Station</label>
+                    <select id="from" required>
+                        <option value="">Select From Station</option>
+                        <option>Bagalkot</option>
+                        <option>Belagavi</option>
+                        <option>Davangere</option>
+                        <option>Dharwad</option>
+                        <option>Gadag Junction</option>
+                        <option>KSR Bengaluru City Junction</option>
+                        <option>Kengeri</option>
+                        <option>Kolar</option>
+                        <option>Mandya</option>
+                        <option>Mysuru Junction</option>
+                        <option>SSS Hubballi Junction</option>
+                        <option>Yesvantpur Junction</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="to">To Station</label>
+                    <select id="to" required>
+                        <option value="">Select To Station</option>
+                        <option>Bagalkot</option>
+                        <option>Belagavi</option>
+                        <option>Davangere</option>
+                        <option>Dharwad</option>
+                        <option>Gadag Junction</option>
+                        <option>KSR Bengaluru City Junction</option>
+                        <option>Kengeri</option>
+                        <option>Kolar</option>
+                        <option>Mandya</option>
+                        <option>Mysuru Junction</option>
+                        <option>SSS Hubballi Junction</option>
+                        <option>Yesvantpur Junction</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row-2">
+                <div>
+                    <label for="trainType">Train Type</label>
+                    <select id="trainType" required>
+                        <option value="">Select Train Type</option>
+                        <option value="superfast">Superfast</option>
+                        <option value="express">Express</option>
+                        <option value="passenger">Passenger</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="date">Journey Date</label>
+                    <input type="date" id="date" required>
+                </div>
+            </div>
+
+            <div class="row-2">
+                <div>
+                    <label for="class">Class</label>
+                    <select id="class">
+                        <option>Unreserved</option>
+                        <option>Sleeper</option>
+                        <option>AC</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="fare">Estimated Fare (₹)</label>
+                    <input type="number" id="fare" readonly placeholder="Auto-calculated">
+                </div>
+            </div>
+
+            <button type="submit">Submit Booking</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+</main>
+
+<script>
+// ====== 1) CONFIG: your Google Apps Script Web App URL ======
+const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyJ1zvw6reMorh2tCuxib27Vm0XGPihLoOWby3lDyMvafvNttT2X8szCWdiBPW8q7m5/exec";
+
+// ====== 2) Station "km markers" (approx distances from KSR Bengaluru City Jn) ======
+const STATION_KM_MARKER = {
+    "KSR Bengaluru City Junction": 0,
+    "Yesvantpur Junction": 6,
+    "Kengeri": 10,
+    "Mandya": 90,
+    "Mysuru Junction": 138,
+    "Kolar": 70,
+    "Davangere": 300,
+    "Dharwad": 430,
+    "Gadag Junction": 430,
+    "SSS Hubballi Junction": 470,
+    "Belagavi": 510,
+    "Bagalkot": 530
+};
+
+// Base per-km rates for Passenger/Express/Superfast
+const BASE_RATE_PER_KM = {
+    passenger: 0.54,
+    express:   0.60,
+    superfast: 0.65
+};
+
+// Class multiplier for Unreserved / Sleeper / AC
+const CLASS_MULTIPLIER = {
+    "Unreserved": 1.0,
+    "Sleeper":   1.5,
+    "AC":        2.5
+};
+
+// ====== 3) Helper functions ======
+
+// Set minimum journey date = today
+function initMinDate() {
+    const dateInput = document.getElementById("date");
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+}
+
+function isPastDate(dateStr) {
+    if (!dateStr) return false;
+    const selected = new Date(dateStr);
+    const today = new Date();
+    selected.setHours(0,0,0,0);
+    today.setHours(0,0,0,0);
+    return selected < today;
+}
+
+function getDistance(from, to) {
+    const a = STATION_KM_MARKER[from];
+    const b = STATION_KM_MARKER[to];
+    if (a === undefined || b === undefined) return null;
+    return Math.abs(a - b);
+}
+
+function calculateFare(from, to, trainType, cls) {
+    const distance = getDistance(from, to);
+    if (distance === null) return "";
+
+    const baseRate = BASE_RATE_PER_KM[trainType];
+    if (!baseRate) return "";
+
+    const classMult = CLASS_MULTIPLIER[cls] || 1.0;
+    return Math.round(distance * baseRate * classMult);
+}
+
+function updateFare() {
+    const from = document.getElementById("from").value;
+    const to = document.getElementById("to").value;
+    const trainType = document.getElementById("trainType").value;
+    const cls = document.getElementById("class").value;
+    const fareInput = document.getElementById("fare");
+
+    if (!from || !to || !trainType || from === to) {
+        fareInput.value = "";
+        return;
+    }
+
+    const fare = calculateFare(from, to, trainType, cls);
+    fareInput.value = fare;
+}
+
+// Attach change listeners for fare recalculation
+document.getElementById("from").addEventListener("change", updateFare);
+document.getElementById("to").addEventListener("change", updateFare);
+document.getElementById("trainType").addEventListener("change", updateFare);
+document.getElementById("class").addEventListener("change", updateFare);
+
+// Initialize min date on load
+window.addEventListener("load", initMinDate);
+
+// ====== 4) Form submit with validations ======
+document.getElementById("ticketForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+
+    const name = document.getElementById("name").value.trim();
+    const age = document.getElementById("age").value;
+    const from = document.getElementById("from").value;
+    const to = document.getElementById("to").value;
+    const date = document.getElementById("date").value;
+    const cls = document.getElementById("class").value;
+    const trainType = document.getElementById("trainType").value;
+    const fare = document.getElementById("fare").value;
+
+    // Journey date must not be in the past
+    if (isPastDate(date)) {
+        resultDiv.innerHTML = '<div class="error">⚠ Journey date cannot be in the past.</div>';
+        return;
+    }
+
+    // From and To must not be the same
+    if (from === to) {
+        resultDiv.innerHTML = '<div class="error">⚠ "From" and "To" stations must not be the same.</div>';
+        return;
+    }
+
+    // Fare must be calculated
+    if (!fare) {
+        resultDiv.innerHTML = '<div class="error">⚠ Please select From, To, Train Type and Class so fare can be calculated.</div>';
+        return;
+    }
+
+    const data = {
+        name,
+        age,
+        from,
+        to,
+        date,
+        cls,
+        trainType,
+        fare
+    };
+
+    // Send to Google Apps Script (Google Sheet)
+    fetch(GOOGLE_SHEETS_WEBAPP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    resultDiv.innerHTML =
+        '<div class="success">✔ Ticket booking  request has been accepted</div>';
+
+    document.getElementById("ticketForm").reset();
+    document.getElementById("fare").value = "";
+    initMinDate(); // reapply min date after reset
+});
+</script>
+</body>
+</html>
